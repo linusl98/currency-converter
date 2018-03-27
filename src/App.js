@@ -4,8 +4,9 @@ import { Segment, Divider } from 'semantic-ui-react'
 import './App.css';
 import logo from './logo.svg';
 import Arrow from 'react-icons/lib/fa/retweet';
+import { throttle } from 'lodash';
 
-const API_KEY = 'wJCmdTzftFpSBfBjksXEFNTHQ83EA7';
+const API_KEY = 'W8dsauGdBeszuvupyQPHWjykvuVAua';
 const BASE_URL = 'https://www.amdoren.com/api/currency.php';
 const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 
@@ -25,8 +26,8 @@ class App extends Component {
 
     this.upperOnChangeDropdown = this.upperOnChangeDropdown.bind(this);
     this.lowerOnChangeDropdown = this.lowerOnChangeDropdown.bind(this);
-    this.upperOnChangeInput = this.upperOnChangeInput.bind(this);
-    this.lowerOnChangeInput = this.lowerOnChangeInput.bind(this);
+    this.upperOnChangeInput = throttle(this.upperOnChangeInput, 100, { leading: false }).bind(this);
+    this.lowerOnChangeInput = throttle(this.lowerOnChangeInput, 100, { leading: false }).bind(this);
   }
 
   upperOnChangeDropdown(data) {
